@@ -1,0 +1,7 @@
+-- This script will teleport a player to a part (can be changed to any position).
+
+script.Parent.Touched:Connect(function(hit) -- Checks if part is hit
+	if game.Players:GetPlayerFromCharacter(hit.Parent) then -- Checks if hit is a person
+		hit.Parent.HumanoidRootPart.Position = game.Workspace.TeleportTo.Position + Vector3.new(5, 0, 0) -- If so, teleport them to a specified part
+	end
+end)
