@@ -1,0 +1,7 @@
+script.Parent.Touched:Connect(function(hit) -- Detects if the brick is touched by any part
+    if game.Players:GetPlayerFromCharacter(hit.Parent) then -- Will check if the part belongs to a player, will return true if it is
+        hit.Parent.Humanoid.Health = 0 -- Kills the player that touched the brick
+    end
+end)
+
+-- This code will terminate any player who makes contact with the brick.
