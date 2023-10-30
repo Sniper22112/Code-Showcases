@@ -1,0 +1,31 @@
+-- Door model uses a hinge, was taken from free models (Re-scripted by myself)
+
+-- Creates variables
+
+local hinge = script.Parent.Doorframe.Hinge
+local proxPrompt = script.Parent.Base.ProximityPrompt
+local TweenService = game:GetService("TweenService")
+
+-- Creates info for closing and opening the door
+
+local Open = {}
+Open.CFrame = hinge.CFrame * CFrame.Angles(0, math.rad(90), 0)
+
+local Close = {}
+Close.CFrame = hinge.CFrame * CFrame.Angles(0, 0, 0)
+
+-- Creates tweening info
+
+local Info = TweenInfo.new(1) -- This means the door takes 1 second to open
+local tweenOpen = TweenService:Create(hinge, Info, Open)
+local tweenClose = TweenService:Create(hinge, Info, Close)
+
+proxPrompt.Triggered:Connect(function() -- Once a player interacts with the prompt;
+	if proxPrompt.ActionText == "Open" then -- If the door is open, close it
+		tweenOpen:Play()
+		proxPrompt.ActionText = "Close"
+	elseif proxPrompt.ActionText == "Close" then -- If the door is closed, open it
+		tweenClose:Play()
+		proxPrompt.ActionText = "Open"
+	end
+end)
