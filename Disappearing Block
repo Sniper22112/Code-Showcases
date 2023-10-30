@@ -1,0 +1,20 @@
+local run = true
+script.Parent.Touched:Connect(function(hit) -- Runs when anything touches the block
+	if game.Players:GetPlayerFromCharacter(hit.Parent) then -- Checks if that part belongs to a player
+		if run then -- This checks if the part should go invisible, will be false if the part is already disappearing
+			run = false -- Stops the coding from running a second time until finished
+			for i = 1, 20 do -- This whole loop will increase the transparency until it is no longer visible
+				script.Parent.Transparency += 0.05
+				wait(0.05)
+			end
+			script.Parent.CanCollide = false -- Allows parts to go through this once it is invisible
+			wait(2)
+			script.Parent.CanCollide = true -- Re enables the collisions, so you can walk on it as it appears again
+			for i = 1, 20 do -- Opposite of last time, this will make the part get progressively more visible
+				script.Parent.Transparency -= 0.05
+				wait(0.05)
+			end
+			run = true -- Allows the script to run again
+		end
+	end
+end)
