@@ -5,7 +5,7 @@ local keyService = require(game.ServerScriptService.ModuleScript)
 local keysPerChest = 2
 
 chest.Touched:Connect(function(hit)
-	if hit.Parent.Humanoid then
+	if game.Players:GetPlayerFromCharacter(hit.Parent) then
 		local player = hit.Parent
 		
 		if keyService.getKeys(player) then
