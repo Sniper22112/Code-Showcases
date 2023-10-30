@@ -1,0 +1,33 @@
+-- This file showcases my abilities to use dictionaries, as well as using functions to modify them.
+
+local testing = {} -- Initiates the module script (This is so I can access inside data from other scripts)
+
+
+testing.backpacks = { -- This creates a dictionary, and adds two example variables to it
+	name = {
+		colour = "red",
+		price = 7
+	},
+	name2 = {
+		colour = "blue",
+		price = 10
+	}
+}
+
+function testing.AddBackpack(name, colour2, cost) -- This function allows other scripts to create a variable inside the dictionary
+	testing.backpacks[name] = { -- If the variable already exists, it will just modify the current one with the new parameters
+		colour = colour2,
+		price = cost
+	}
+end
+
+function testing.getBackpackDetails(name) -- This function will return all data from a variable inside the dictionary
+	if testing.backpacks[name] then
+		return testing.backpacks[name] -- Returns the whole variable
+	else -- If the variable does not exist, it will return "false" to the call
+		return false
+	end
+end
+
+
+return testing -- End module script
