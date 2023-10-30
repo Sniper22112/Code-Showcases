@@ -1,0 +1,7 @@
+local humanoid = script.Parent.Humanoid
+local plr = game.Players:GetPlayerFromCharacter(script.Parent)
+while true do -- Endless Loop
+    humanoid.JumpPower += 1 -- Increased jump height by 1
+    plr.PlayerGui.ScreenGui.TextLabel.Text =  "Jump Power:"..humanoid.JumpPower -- This changes a piece of text on the players screen to display the jump power
+    wait(1) -- Waits one second
+end
