@@ -1,0 +1,17 @@
+-- Adds a key to the players inventory if touched.
+
+local keyService = require(game.ServerScriptService.ModuleScript)
+local key = script.Parent
+
+key.Touched:Connect(function(hit)
+	if game.Players:GetPlayerFromCharacter(hit.Parent) then
+		
+    if not keyService.getKeys(hit.Parent) then
+			keyService.addPlayerStat(hit.Parent)
+		end
+		
+		keyService.addKey(hit.Parent, 1)
+		
+		key:Destroy()
+	end
+end)
