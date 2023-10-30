@@ -1,0 +1,35 @@
+-- This will not be commented to keep it clean, but ive kept the two scripts together in this folder for ease of viewing.
+
+local module = {}
+
+local playerStats = {
+	
+}
+
+function module.addPlayerStat(player)
+	playerStats[player.Name] = 0
+	print("Player ".. player.Name.." added.")
+end
+
+function module.addKey(player, amount)
+	playerStats[player.Name] += 1
+	print("Key added.")
+end
+
+function module.removeKeys(player, amount)
+	playerStats[player.Name] -= amount
+	if playerStats[player.Name] < 0 then playerStats[player.Name] = 0 end
+	print("Key(s) removed.")
+end
+
+function module.getKeys(player)
+	if playerStats[player.Name] then
+		print("Returning stats...")
+		return playerStats[player.Name]
+	else
+		print("Player does not have a stat yet!")
+		return false
+	end
+end
+
+return module
