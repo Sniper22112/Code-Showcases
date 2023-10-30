@@ -1,0 +1,20 @@
+-- Location: Workspace, inside a part. Purpose is to check if the player has sufficient keys to open a chest.
+
+local chest = script.Parent
+local keyService = require(game.ServerScriptService.ModuleScript)
+local keysPerChest = 2
+
+chest.Touched:Connect(function(hit)
+	if hit.Parent.Humanoid then
+		local player = hit.Parent
+		
+		if keyService.getKeys(player) then
+			if keyService.getKeys(player) >= 2 then
+				print("Player has sufficient keys.")
+				keyService.removeKeys(player, keysPerChest)
+				print("Chest opened. Player now has ".. keyService.getKeys(player)..".")
+				chest:Destroy()
+			end
+		end
+	end
+end)
